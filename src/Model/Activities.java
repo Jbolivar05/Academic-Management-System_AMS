@@ -59,7 +59,4 @@ public class Activities {
         this.subject = subject;
     }
 
-    
-    
-
 }

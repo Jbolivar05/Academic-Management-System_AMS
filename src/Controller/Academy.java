@@ -6,6 +6,7 @@ package Controller;
 
 import Model.ComparableObject;
 import Model.Student;
+import Model.Teacher;
 import Model.Tree;
 
 /**
@@ -31,8 +32,8 @@ public class Academy {
     }
     
 
-    public void addNode(Student student) {
-        treeStudent = (addData(treeStudent, student));
+    public Tree addNode(Tree tree, ComparableObject object) {
+        return addData(tree, object);
     }
 
     public Tree addData(Tree tree, ComparableObject newObject) {
@@ -56,9 +57,11 @@ public class Academy {
 
     public static void main(String[] args) {
         Student p1 = new Student("Jorge", "Jimenez", 1002, 01, null);
-        Academy conf = new Academy();
-        conf.addNode(p1);
+        Teacher t1 = new Teacher("Juan","Linares",123,02,null);
+        Academy conf = new Academy();        
         conf.print(conf.treeStudent);
+        conf.treeStudent = conf.addNode(conf.treeStudent,p1);
+        conf.treeTeacher = conf.addNode(conf.treeTeacher,t1);
     }
 }
 
