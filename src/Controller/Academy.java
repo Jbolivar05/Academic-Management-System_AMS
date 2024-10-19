@@ -4,18 +4,61 @@
  */
 package Controller;
 
+import Model.ComparableObject;
 import Model.Student;
+import Model.Tree;
 
 /**
  *
  * @author Jorge
  */
 public class Academy {
+
+    Tree treeStudent;
+    Tree treeTeacher;
+
+    public Academy() {
+        this.treeStudent = null;
+        this.treeTeacher = null;
+    }
+
+    public void print(Tree tree) {
+        if (tree != null) {
+            print(tree.leftSon); // Recorre el subárbol izquierdo
+            System.out.println(tree.data.toString()); // Imprime el dato del nodo actual (que será un estudiante)
+            print(tree.rightSon); // Recorre el subárbol derecho
+        }
+    }
     
 
-    
+    public void addNode(Student student) {
+        treeStudent = (addData(treeStudent, student));
+    }
+
+    public Tree addData(Tree tree, ComparableObject newObject) {
+        if (tree == null) {
+
+            tree = new Tree(newObject);
+            return tree;
+        }
+
+        if (newObject.compareTo(tree.data) < 0) {
+
+            tree.leftSon = addData(tree.leftSon, newObject);
+
+        } else if (newObject.compareTo(tree.data) > 0) {
+
+            tree.rightSon = addData(tree.rightSon, newObject);
+        }
+
+        return tree;
+    }
+
     public static void main(String[] args) {
-        Student p = new Student("Jorge", "Jimenez", 10, null);
-        
+        Student p1 = new Student("Jorge", "Jimenez", 1002, 01, null);
+        Academy conf = new Academy();
+        conf.addNode(p1);
+        conf.print(conf.treeStudent);
     }
 }
+
